@@ -1,0 +1,663 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" >
+    <link rel="stylesheet" href="../CSS/index.css">
+
+      <style>
+    
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 350px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 1000;
+      overflow-y: auto;
+      background-color: #e3e6f3;
+    }
+    .cart-drawer.open {
+      right: 0;
+    }
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 999;
+    }
+    .cart-overlay.show {
+      display: block;
+    }
+    .cart-icon {
+      position: fixed;
+      top: 31px;
+      right: 20px;
+      background: #088178;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      z-index: 999;
+    }
+    .cart-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
+    .cart-item div button {
+      margin-right: 5px;
+    }
+.toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #088178;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1100;
+    }
+    .toast.show { opacity: 1; }
+    @media (max-width: 480px) {
+      .cart-drawer {
+        width: 100%;
+        right: -100%;
+      }
+      .cart-drawer.open {
+        right: 0;
+      }
+      .cart-icon {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+    }
+
+
+
+
+
+  </style>
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="../image/ChatGPT_Image_Jul_11__2025__01_30_17_AM-removebg-preview.png" class="logo" width="90px" height="90px" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a  href="Home.html">Home</a></li>
+                  <li><a class="active" href="Shop.html">Shop</a>
+                    <li><a href="Blog.html">Blog</a></li>
+                      <li><a href="About.html">About</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                           <!-- <li id="lg-bag" class="cartImg"><i class="fa-solid fa-bag-shopping"></i></li> -->
+                           <button id="logout" class="normal" style="background-color: #088178;">LOG-OUT</button>
+
+
+                          
+                          <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+             <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a> 
+              <!-- <button class="normal" style="background-color: #088178;">LOG-OUT</button> -->
+              <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section> 
+
+    <section id="page-header"> 
+        
+        <h2 style="color: red;" id="emmex"></h2>
+        
+        <p>save more with coupons & up to 80% offer</p>
+        
+
+    </section> 
+      <div id="cart-drawer" class="cart-drawer">
+    <h2 style="color: #088178;">Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <strong>Total:</strong> $<span id="cart-total">0.00</span>
+      <br /><br />
+         <button id="clear-cart" class="normal" style="background-color: #088178; color: #fff;">Clear Cart</button>
+      <button id="checkout-cart" class="normal" style="background-color: #088178;color: #fff;">Checkout</button><br /><br />
+      <button id="close-cart" class="normal" style="background-color: #088178; color: #fff;">Close</button>
+    </div>
+  </div>
+  <div id="cart-overlay" class="cart-overlay"></div>
+  <button id="open-cart" class="cart-icon">
+    🛒 <span id="cart-count">0</span>
+  </button>
+   <div id="toast" class="toast">Added to cart!</div>
+
+
+
+       
+
+
+
+    
+     <section id="product1"  class="section-p1">
+        <h2>Featured Product</h2>
+        <p>Summer Collection New Modern Design</p> 
+              <div class="pro-container">
+            <div class="pro">
+                <img src="../image/as1.webp" alt="" height="">
+                <div class="des">
+                    <span>Fendi</span>
+                    <h5>zeema full men outfit</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$200</h4>
+
+                </div>
+                <a href="#" class="add-to-cart" ><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/bs4.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>zeema vintage T-shirts</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$78</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/cs4.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5> vintage T-shirts</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$76</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/cs3.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>Football training wears</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$55</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/cs2.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>men brown joggers</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$128</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/as3.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>Fendi men full outfit</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$458</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart "  ></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/cs1.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>Men green joggers</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$100</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/bs2.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>Casablanca T-shirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$69</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                
+
+       
+         
+        <div class="pro-container">
+            <div class="pro">
+                <img src="../image/a1.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>Urban vintage T-shirts</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$136</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/a2.webp" alt="" height="">
+                <div class="des">
+                    <span>Gucci</span>
+                    <h5>Gucci T-shirts</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$118</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/a3.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>Men white joggers</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$370</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/as4.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>Fendi men full outfit.</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$90</h4>
+
+                </div>
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/a4.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>J-stack polo T-shirts</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$100</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/a6.webp" alt="" height="">
+                <div class="des">
+                    <span>Nike</span>
+                    <h5>zeema sweat-shirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$98</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/a8.webp" alt="" height="">
+                <div class="des">
+                    <span>puma</span>
+                    <h5>PUMA Jacket</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$280</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+                   <div class="pro">
+                <img src="../image/bs3.webp" alt="" height="">
+                <div class="des">
+                    <span>puma</span>
+                    <h5>PUMA vintage T-shirts</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                           <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$178</h4>
+
+                </div>
+                <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart cart"></i></a>
+
+            </div>
+
+        
+        </section> 
+
+         <section id="pagination">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">→</a>
+
+        </section> 
+
+         <section id="newsletter" class="section-p1 section-m1" >
+            <div class="newstext">
+                <h4>Sign Up For Newsletters</h4>
+                <p>Get E-mail updates about our latest shop and <span>special offers.</span>
+                 </p>
+
+
+            </div>
+            <div class="form">
+                <input type="text" placeholder="your email address">
+                <button style="border: none;">Sign Up</button>
+
+            </div>
+        </section> 
+        <footer class="section-p1">
+            <div class="col">
+                <img src="../image/ChatGPT_Image_Jul_11__2025__01_30_17_AM-removebg-preview.png" alt="" width="90px" height="90px">
+                <p><strong>Contacts</strong></p>
+                <p>Address: 28 Bestway, Iwo-road, Ibadan</p>
+                <p><strong>Phone:</strong> (+234) 81 1982 8675</p>
+                <p><strong>Hours:</strong> 10:00 - 18:00,  Mon - Sat</p>
+                <div class="follow">
+                    <p><strong>Follow us</strong></p>
+                    <div class="icon">
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col" id="jk">
+                <p><strong>About</strong></p>
+                <a href="#">About Us</a>
+                 <a href="#">Delivery Information</a>
+                 <a href="#">Privacy Policy</a>
+             <a href="#">Terms and Condition</a>
+              <a href="#">Contact Us</a>
+
+            </div>
+
+              <div class="col" id="jkk">
+                <p><strong>My Account</strong></p>
+                <a href="#">Sign In</a>
+                 <a href="#">View Cart</a>
+                 <a href="#">My Wishlist</a>
+             <a href="#">Track My Order</a>
+              <a href="#">Help</a>
+
+            </div>
+
+            <div class="col-install">
+                <p>Secured payment gateway</p>
+                
+                <div class="row">
+                    <img src="../image/4k-removebg-preview.png" alt="">
+
+                </div>
+
+            </Div> 
+            <div class="copyright">
+                <p>© 2025, javascript project</p>
+
+            </div>
+
+        </footer> 
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+     function showToast(message = 'Added to cart!') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    function updateCartUI() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      const cartCount = document.getElementById('cart-count');
+      cartItemsContainer.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        cartItemsContainer.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" />
+            <div>
+              <strong>${item.name}</strong><br />
+              $${item.price} x ${item.quantity}<br />
+              <button onclick="changeQuantity(${index}, 1)">+</button>
+              <button onclick="changeQuantity(${index}, -1)">-</button>
+              <button onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+
+      cartTotal.innerText = total.toFixed(2);
+      cartCount.innerText =  cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function changeQuantity(index, change) {
+      cart[index].quantity += change;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const product = this.closest('.pro');
+        const name = product.querySelector('h5').innerText;
+        const priceText = product.querySelector('h4').innerText.replace(/[^0-9.]/g, '');
+        const price = parseFloat(priceText);
+        const image = product.querySelector('img').getAttribute('src');
+
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({ name, price, image, quantity: 1 });
+        }
+        saveCart();
+        showToast();
+      });
+    });
+
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartOverlay = document.getElementById('cart-overlay');
+    document.getElementById('open-cart').onclick = () => {
+      cartDrawer.classList.add('open');
+      cartOverlay.classList.add('show');
+    };
+    document.getElementById('close-cart').onclick = () => {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('show');
+    };
+    cartOverlay.onclick = () => {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('show');
+    };
+      document.getElementById('clear-cart').onclick = () => {
+      cart = [];
+      saveCart();
+    };
+
+    document.getElementById('checkout-cart').onclick = () => {
+    //   alert('Order completed...');
+     window.location.href = 'cart.html';
+    };
+
+    updateCartUI();
+
+
+    const bar = document.getElementById('bar');
+const close = document.getElementById('close');
+const nav = document.getElementById('navbar');
+
+
+    bar.addEventListener('click',() =>{
+        nav.classList.toggle('active');
+    });
+
+
+
+    close.addEventListener('click',() =>{
+        nav.classList.remove('active');
+    })
+  </script>
+ 
+ <script type="module" src="../JS/out.js"></script>
+<script src="../JS/shop.js" type="module"></script>  
+
+
+
+
+ </body>
+</html>

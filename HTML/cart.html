@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Zeema</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .checkout-form, .order-summary {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      flex: 1 1 400px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #088178;
+    }
+
+    .checkout-form input, .checkout-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .checkout-form button {
+      width: 100%;
+      padding: 12px;
+      background: #088178;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+
+    .order-summary .total {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="checkout-form">
+      <h2>Shipping Details</h2>
+      <form id="checkoutForm" onsubmit="handleCheckout(event)">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="tel" placeholder="Phone Number" required />
+        <input type="text" placeholder="Shipping Address" required />
+        <textarea placeholder="Order Notes (optional)" rows="4"></textarea>
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+
+    
+    <div class="order-summary">
+      <h2>Your Order</h2>
+      <div id="orderItems"></div>
+      <div class="total">Total: $<span id="orderTotal">0.00</span></div>
+    </div>
+  </div>
+
+  <script>
+    function loadOrderSummary() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const orderItems = document.getElementById('orderItems');
+      const orderTotal = document.getElementById('orderTotal');
+      let total = 0;
+
+      orderItems.innerHTML = '';
+
+      if (cart.length === 0) {
+        orderItems.innerHTML = '<p>Your cart is empty.</p>';
+        return;
+      }
+
+      cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        const div = document.createElement('div');
+        div.className = 'order-item';
+        div.innerHTML = `
+          <span>${item.name} (x${item.quantity})</span>
+          <span>$${subtotal.toFixed(2)}</span>
+        `;
+        orderItems.appendChild(div);
+      });
+
+      orderTotal.textContent = total.toFixed(2);
+    }
+
+    function handleCheckout(e) {
+      e.preventDefault();
+      alert('Order placed successfully!');
+      localStorage.removeItem('cart');
+      window.location.href = 'thankyou.html'; 
+    }
+
+    loadOrderSummary();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+ 
+
